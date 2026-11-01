@@ -2,7 +2,7 @@
 <!--
   UNTESTED ON REAL APIGEE. Snippet, not a full target: merge the two <Step>s into the existing
   TargetEndpoint as the LAST request steps (TargetEndpoint PostFlow is the last request flow
-  before the call to the backend). Anything that writes X-B3-* or b3 after them wins (POC scenario 4).
+  before the call to the backend). Anything that writes X-B3-* or b3 after them wins.
 -->
 <TargetEndpoint name="default">
   <PostFlow name="PostFlow">

@@ -7,7 +7,7 @@
   <DisplayName>AM-SetB3FromTraceparent</DisplayName>
   <Remove>
     <Headers>
-      <!-- A single b3 header takes precedence over X-B3-* in B3 extractors (POC scenario 7). -->
+      <!-- A single b3 header takes precedence over X-B3-* in B3 extractors. -->
       <Header name="b3"/>
       <!-- traceparent has no equivalent field; a leftover value would belong to the gateway's own trace. -->
       <Header name="X-B3-ParentSpanId"/>

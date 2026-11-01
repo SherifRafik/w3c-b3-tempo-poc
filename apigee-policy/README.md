@@ -33,7 +33,7 @@ A missing or malformed `traceparent` leaves the request untouched. Both policies
 
 As the **last** request steps before the call to the backend (TargetEndpoint PostFlow, Request).
 If anything writes `X-B3-*` or `b3` after these steps, it overwrites the translation and the
-ids no longer match (POC scenarios 4 and 7a).
+ids no longer match.
 
 ## What to check in the Apigee Debug session
 
@@ -45,5 +45,5 @@ ids no longer match (POC scenarios 4 and 7a).
    - no `b3` and no `X-B3-ParentSpanId`.
 3. Not known: whether Apigee's own distributed tracing (OpenCensus / Cloud Trace) writes its
    B3 headers at the target connection, i.e. after every policy. If the target still receives
-   Apigee's ids, this policy cannot win, and fix 1 (backend propagator order) is the
-   only option.
+   Apigee's ids, this policy cannot win. The remaining option is a backend that reads
+   `traceparent` itself and prefers it over B3, which needs Apigee to forward `traceparent`.
