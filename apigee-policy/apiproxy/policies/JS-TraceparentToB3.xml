@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- UNTESTED ON REAL APIGEE. continueOnError=true: a script error must never fail the API call. -->
+<Javascript continueOnError="true" enabled="true" timeLimit="200" name="JS-TraceparentToB3">
+  <DisplayName>JS-TraceparentToB3</DisplayName>
+  <ResourceURL>jsc://traceparent-to-b3.js</ResourceURL>
+</Javascript>

@@ -1,0 +1,9 @@
+# build output
+bin/
+# local logs and screenshots
+*.log
+screenshots/
+# OS and editor files
+.DS_Store
+.idea/
+.vscode/

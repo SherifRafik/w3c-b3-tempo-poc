@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+  UNTESTED ON REAL APIGEE. Snippet, not a full target: merge the two <Step>s into the existing
+  TargetEndpoint as the LAST request steps (TargetEndpoint PostFlow is the last request flow
+  before the call to the backend). Anything that writes X-B3-* or b3 after them wins (POC scenario 4).
+-->
+<TargetEndpoint name="default">
+  <PostFlow name="PostFlow">
+    <Request>
+      <!-- ...existing steps stay above... -->
+      <Step>
+        <Name>JS-TraceparentToB3</Name>
+      </Step>
+      <Step>
+        <Name>AM-SetB3FromTraceparent</Name>
+        <Condition>w3c2b3.valid = "true"</Condition>
+      </Step>
+    </Request>
+    <Response/>
+  </PostFlow>
+  <HTTPTargetConnection>
+    <URL>https://backend.example.com</URL>
+  </HTTPTargetConnection>
+</TargetEndpoint>

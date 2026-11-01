@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+  UNTESTED ON REAL APIGEE. The POC gateway mirrors these header operations in code; it does not execute this XML.
+  Run only when JS-TraceparentToB3 set w3c2b3.valid = "true" (see targets/default.xml).
+-->
+<AssignMessage continueOnError="true" enabled="true" name="AM-SetB3FromTraceparent">
+  <DisplayName>AM-SetB3FromTraceparent</DisplayName>
+  <Remove>
+    <Headers>
+      <!-- A single b3 header takes precedence over X-B3-* in B3 extractors (POC scenario 7). -->
+      <Header name="b3"/>
+      <!-- traceparent has no equivalent field; a leftover value would belong to the gateway's own trace. -->
+      <Header name="X-B3-ParentSpanId"/>
+    </Headers>
+  </Remove>
+  <Set>
+    <Headers>
+      <Header name="X-B3-TraceId">{w3c2b3.trace_id}</Header>
+      <Header name="X-B3-SpanId">{w3c2b3.span_id}</Header>
+      <Header name="X-B3-Sampled">{w3c2b3.sampled}</Header>
+    </Headers>
+  </Set>
+  <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+  <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

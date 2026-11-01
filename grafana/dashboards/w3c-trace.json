@@ -1,0 +1,23 @@
+{
+  "uid": "w3c-trace",
+  "title": "W3C trace lookup",
+  "schemaVersion": 41,
+  "time": { "from": "now-1h", "to": "now" },
+  "templating": {
+    "list": [
+      { "name": "traceId", "label": "Trace id", "type": "textbox", "query": "", "current": { "text": "", "value": "" } }
+    ]
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "traces",
+      "title": "Trace ${traceId}",
+      "gridPos": { "x": 0, "y": 0, "w": 24, "h": 22 },
+      "datasource": { "type": "tempo", "uid": "tempo" },
+      "targets": [
+        { "refId": "A", "datasource": { "type": "tempo", "uid": "tempo" }, "queryType": "traceql", "query": "${traceId}" }
+      ]
+    }
+  ]
+}
